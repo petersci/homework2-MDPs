@@ -8,20 +8,19 @@ TA: try to elaborate the algorithms that you implemented and any details worth m
 This homework is related to UC Berkerly cs294 MDPs.
 
 > Markov Decision Process is a discrete time stochastic control process. At each time step, the process is in some state s, and the decision maker may choose any action a that is available in state s. The process responds at the next time step by randomly moving into a new state s', and giving the decision maker a corresponding reward R(s,a,s')
+
 ## Implementation
 In this homework we have to implement value iteration, policy iteration and tabular Q-learning. In value and policy iteration, we use a grid world which simulate a frozen lake with goal and hole on it. For an action on a specific state, mdp.P[state][action] will return all possible next state and the probability and reward accordingly.
 * Value Iteration
 
 For value iteration, we have to implement two math equation below.
 
-<table border=1>
 <tr>
 <td>
 <img src="imgs/value_1.PNG"/>
 <img src="imgs/value_2.PNG"/>
 </td>
 </tr>
-</table>
 To update the value function for a given state, we have to go through each action in the state. And for each action, we have to sum over all the possible next state and finally, figure out the max value of the actions and update it to the value function in this state, and update the index of the action to the policy of the state.
 
 ```python
@@ -40,14 +39,12 @@ for s in range(mdp.nS):
 
 For policy iteration we have to compute state value function first and then the state action value function, finally, combine them to complete the policy iteration.
 
-<table border=2>
 <tr>
 <td>
 <img src="imgs/policy_1.PNG"/>
 <img src="imgs/policy_2.PNG"/>
 </td>
 </tr>
-</table>
 We use the matrix form to solve the linear equation to obtain state value function. (I - gamma * P)V = P * R, which is equal to the matrix form Ax = B.
 
 ```python
@@ -101,14 +98,12 @@ else:
 ```
 To update the Q table, we have to implement the following two mathematical equations
 
-<table border=3>
 <tr>
 <td>
 <img src="imgs/Q-learning_1.PNG"/>
 <img src="imgs/Q-learning_2.PNG"/>
 </td>
 </tr>
-</table>
 
 ```python
 target = reward + gamma * np.amax(q_vals[next_state])
@@ -137,7 +132,6 @@ for itr in range(300000):
 
 Here we can see the action and value update for each state.
 
-<table border=4>
 <tr>
 <td>
 <img src="imgs/VI_1.PNG" width="19%"/>
@@ -153,27 +147,22 @@ Here we can see the action and value update for each state.
 <img src="imgs/VI_plot.PNG"/>
 </td>
 </tr>
-</table>
 
 * Policy Iteration
 
-<table border=5>
 <tr>
 <td>
 <img src="imgs/PI_plot.PNG"/>
 </td>
 </tr>
-</table>
 
 * Tabular Q-learning
 
 By finishing the tabular Q-learning, we can see a crawling robot moving fast from the left to the right.
 
-<table border=5>
 <tr>
 <td>
 <img src="imgs/Q_1.PNG"/>
 <img src="imgs/Q_2.PNG"/>
 </td>
 </tr>
-</table>
